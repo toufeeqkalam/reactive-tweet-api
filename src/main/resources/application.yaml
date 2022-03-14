@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  webflux:
+    base-path: /v1/api/tweets
+  data:
+    mongodb:
+      uri: mongodb://localhost/tweets
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health
+  endpoint:
+    metrics:
+      enabled: true
+  health:
+    defaults:
+      enabled: true
