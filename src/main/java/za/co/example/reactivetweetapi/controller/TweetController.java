@@ -31,7 +31,7 @@ public class TweetController {
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<?>> getAllTweets() {
         return this.tweetRepository.findAll(Sort.by(Sort.Direction.DESC, "created")).collectList().flatMap(tweets -> {
-            if (tweets.isEmpty()) {
+            if (!tweets.isEmpty()) {
                 return Mono.just(new ResponseEntity<>(tweets, HttpStatus.OK));
             } else {
                 return Mono.just(new ResponseEntity<>(HttpStatus.NO_CONTENT));
